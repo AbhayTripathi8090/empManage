@@ -11,7 +11,9 @@ node_modules/
 uploads/temp/
 uploads/*
 !uploads/.gitkeep
-
+node_modules/
+.env
+dist/
 # Logs
 logs/
 *.log
