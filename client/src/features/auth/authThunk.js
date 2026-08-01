@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import authApi from '../../services/authApi';
-import profileApi from '../../services/profileApi';
+import authApi from './authApi';
+import profileApi from '../profile/profileApi';
 
 /**
  * Thunk to authenticate user with credentials
@@ -89,10 +89,10 @@ export const changePasswordThunk = createAsyncThunk(
  */
 export const logoutUserThunk = createAsyncThunk(
   'auth/logoutUser',
-  async (_, { dispatch }) => {
+  async () => {
     try {
       await authApi.logout();
-    } catch (err) {
+    } catch {
       // Ignore network errors on logout
     } finally {
       localStorage.removeItem('token');
