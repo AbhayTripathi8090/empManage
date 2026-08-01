@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { User, Mail, Upload, X, Save, Shield } from 'lucide-react';
+import { User, Mail, X, Save, Shield } from 'lucide-react';
 import Input from '../../../components/common/Input';
 import Button from '../../../components/common/Button';
 

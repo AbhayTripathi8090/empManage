@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthUser, selectAuthLoading, selectAuthError } from '../../auth/authSelector';
-import { updateUserProfileThunk, changePasswordThunk } from '../../auth/authThunk';
+import { updateUserProfileThunk, changePasswordThunk, logoutUserThunk } from '../../auth/authThunk';
 import Header from '../../../components/common/Header';
+import Button from '../../../components/common/Button';
 import ProfileDetailsForm from '../components/ProfileDetailsForm';
 import ChangePasswordForm from '../components/ChangePasswordForm';
-import { User, Key, CheckCircle2, AlertCircle } from 'lucide-react';
+import { User, Key, CheckCircle2, AlertCircle, LogOut } from 'lucide-react';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -54,33 +55,44 @@ const ProfilePage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Summary Hero Card */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col items-center text-center space-y-4 h-fit">
+        <div className="surface-card p-6 rounded-2xl flex flex-col items-center text-center space-y-4 h-fit">
           {currentUser?.avatar ? (
             <img
               src={currentUser.avatar}
               alt={currentUser.name}
-              className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md ring-4 ring-indigo-50"
+              className="w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-md ring-4 ring-teal-50"
             />
           ) : (
-            <div className="w-24 h-24 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-3xl ring-4 ring-indigo-50">
+            <div className="w-24 h-24 rounded-2xl bg-slate-950 text-teal-300 flex items-center justify-center font-black text-3xl ring-4 ring-white">
               {currentUser?.name ? currentUser.name[0].toUpperCase() : <User className="w-10 h-10" />}
             </div>
           )}
 
           <div>
-            <h3 className="text-xl font-bold text-gray-900">{currentUser?.name || 'Account User'}</h3>
-            <p className="text-sm text-gray-500">{currentUser?.email || 'user@company.com'}</p>
+            <h3 className="text-xl font-black text-slate-950">{currentUser?.name || 'Account User'}</h3>
+            <p className="text-sm text-slate-500">{currentUser?.email || 'user@company.com'}</p>
           </div>
 
-          <span className="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-50 text-indigo-700 capitalize border border-indigo-100">
+          <span className="px-3 py-1 text-xs font-black rounded-full bg-teal-50 text-teal-700 capitalize border border-teal-100">
             {currentUser?.role || 'Employee'}
           </span>
+
+          <div className="w-full border-t border-slate-100 pt-4">
+            <Button
+              variant="danger"
+              className="w-full"
+              icon={LogOut}
+              onClick={() => dispatch(logoutUserThunk())}
+            >
+              Log Out
+            </Button>
+          </div>
         </div>
 
         {/* Tabbed Form Section */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="surface-card lg:col-span-2 rounded-2xl overflow-hidden">
           {/* Navigation Tabs */}
-          <div className="flex border-b border-gray-100 bg-gray-50/50 p-2 gap-2">
+          <div className="flex border-b border-slate-100 bg-slate-50/70 p-2 gap-2">
             <button
               onClick={() => {
                 setActiveTab('details');
@@ -88,8 +100,8 @@ const ProfilePage = () => {
               }}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === 'details'
-                  ? 'bg-white text-indigo-600 shadow-sm'
-                  : 'text-gray-500 hover:text-gray-800 hover:bg-white/50'
+                  ? 'bg-white text-teal-700 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'
               }`}
             >
               <User className="w-4 h-4" /> Personal Details
@@ -101,8 +113,8 @@ const ProfilePage = () => {
               }}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold transition-all ${
                 activeTab === 'security'
-                  ? 'bg-white text-indigo-600 shadow-sm'
-                  : 'text-gray-500 hover:text-gray-800 hover:bg-white/50'
+                  ? 'bg-white text-teal-700 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-800 hover:bg-white/50'
               }`}
             >
               <Key className="w-4 h-4" /> Security & Password

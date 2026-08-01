@@ -12,17 +12,24 @@ const LoginForm = ({ onSubmit, loading, errorMessage }) => {
     formState: { errors },
   } = useForm();
 
+  const inputClass = (hasError) =>
+    `w-full px-3.5 py-2.5 border rounded-xl shadow-sm text-sm focus:outline-none focus:ring-2 transition-all ${
+      hasError
+        ? 'border-rose-300 focus:ring-rose-500 focus:border-rose-500 bg-rose-50/40'
+        : 'border-slate-200 focus:ring-teal-500 focus:border-teal-500'
+    }`;
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
       {errorMessage && (
-        <div className="p-3 text-sm text-red-700 bg-red-50 rounded-lg border border-red-200 flex items-center gap-2">
-          <AlertCircle className="w-5 h-5 flex-shrink-0 text-red-500" />
+        <div className="p-3 text-sm text-rose-700 bg-rose-50 rounded-xl border border-rose-200 flex items-center gap-2">
+          <AlertCircle className="w-5 h-5 flex-shrink-0 text-rose-500" />
           <span>{typeof errorMessage === 'string' ? errorMessage : 'Authentication failed. Check your inputs.'}</span>
         </div>
       )}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+        <label className="block text-sm font-bold text-slate-700 mb-1.5">Email Address</label>
         <input
           type="email"
           {...register('email', {
@@ -32,18 +39,14 @@ const LoginForm = ({ onSubmit, loading, errorMessage }) => {
               message: 'Please enter a valid email address',
             },
           })}
-          className={`w-full px-3.5 py-2.5 border rounded-lg shadow-sm text-sm focus:outline-none focus:ring-2 transition-all ${
-            errors.email
-              ? 'border-red-300 focus:ring-red-500 focus:border-red-500 bg-red-50/20'
-              : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
-          }`}
+          className={inputClass(errors.email)}
           placeholder="admin@company.com"
         />
-        {errors.email && <p className="text-xs text-red-500 mt-1 font-medium">{errors.email.message}</p>}
+        {errors.email && <p className="text-xs text-rose-500 mt-1 font-bold">{errors.email.message}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <label className="block text-sm font-bold text-slate-700 mb-1.5">Password</label>
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
@@ -54,22 +57,19 @@ const LoginForm = ({ onSubmit, loading, errorMessage }) => {
                 message: 'Password must be at least 6 characters long',
               },
             })}
-            className={`w-full px-3.5 py-2.5 pr-10 border rounded-lg shadow-sm text-sm focus:outline-none focus:ring-2 transition-all ${
-              errors.password
-                ? 'border-red-300 focus:ring-red-500 focus:border-red-500 bg-red-50/20'
-                : 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500'
-            }`}
-            placeholder="••••••••"
+            className={`${inputClass(errors.password)} pr-10`}
+            placeholder="Password"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 focus:outline-none"
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
         </div>
-        {errors.password && <p className="text-xs text-red-500 mt-1 font-medium">{errors.password.message}</p>}
+        {errors.password && <p className="text-xs text-rose-500 mt-1 font-bold">{errors.password.message}</p>}
       </div>
 
       <Button type="submit" className="w-full mt-2 py-2.5" disabled={loading}>

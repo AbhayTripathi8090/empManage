@@ -31,17 +31,17 @@ const EmployeeFilters = ({ filters = {}, onFilterChange, onResetFilters }) => {
   ];
 
   return (
-    <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200 shadow-sm mb-6 space-y-4">
-      <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-        <div className="flex items-center gap-2 text-sm font-semibold text-gray-800">
-          <Filter className="w-4 h-4 text-indigo-600" /> Filter & Search Employees
+    <div className="surface-card p-4 sm:p-5 rounded-2xl mb-6 space-y-4">
+      <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="flex items-center gap-2 text-sm font-black text-slate-900">
+          <Filter className="w-4 h-4 text-teal-600" /> Filter Employees
         </div>
         {(filters.search || filters.status) && (
           <Button
             variant="ghost"
             size="sm"
             onClick={onResetFilters}
-            className="text-gray-500 hover:text-red-600"
+            className="text-slate-500 hover:text-rose-600"
           >
             <RotateCcw className="w-3.5 h-3.5" /> Clear Filters
           </Button>
@@ -49,7 +49,6 @@ const EmployeeFilters = ({ filters = {}, onFilterChange, onResetFilters }) => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {/* Search Input */}
         <div className="sm:col-span-2">
           <Input
             placeholder="Search by name, email, or designation..."
@@ -59,7 +58,6 @@ const EmployeeFilters = ({ filters = {}, onFilterChange, onResetFilters }) => {
           />
         </div>
 
-        {/* Status Filter Dropdown */}
         <Select
           value={filters.status || ''}
           onChange={(e) => onFilterChange({ status: e.target.value })}

@@ -8,7 +8,7 @@ const MainLayout = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-900">
+    <div className="app-shell soft-grid flex min-h-screen text-slate-900">
       {/* Desktop Sidebar */}
       <Sidebar />
 
