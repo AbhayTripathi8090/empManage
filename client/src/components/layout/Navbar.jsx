@@ -24,10 +24,10 @@ const Navbar = ({ onMenuClick }) => {
         </div>
       </div>
 
-      <div className="hidden lg:flex h-10 max-w-sm flex-1 items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-3 text-sm text-slate-400 shadow-sm">
+      {/* <div className="hidden lg:flex h-10 max-w-sm flex-1 items-center gap-2 rounded-xl border border-slate-200 bg-white/80 px-3 text-sm text-slate-400 shadow-sm">
         <Search className="h-4 w-4 flex-shrink-0" />
         <span className="truncate">Search people, roles, teams</span>
-      </div>
+      </div> */}
 
       <div className="ml-auto flex items-center gap-3 sm:gap-4">
         <div className="hidden sm:flex lg:hidden h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white/80 text-slate-400 shadow-sm">
