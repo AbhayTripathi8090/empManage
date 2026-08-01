@@ -13,19 +13,19 @@ const Button = ({
   ...props
 }) => {
   const baseStyle =
-    'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none';
+    'inline-flex items-center justify-center font-bold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none';
 
   const variants = {
     primary:
-      'bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white shadow-sm focus:ring-indigo-500',
+      'bg-slate-950 hover:bg-slate-800 active:bg-slate-900 text-white shadow-lg shadow-slate-900/15 focus:ring-teal-500',
     secondary:
-      'bg-white hover:bg-gray-50 active:bg-gray-100 text-gray-700 border border-gray-300 shadow-sm focus:ring-indigo-500',
+      'bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 border border-slate-200 shadow-sm focus:ring-teal-500',
     danger:
-      'bg-red-600 hover:bg-red-700 active:bg-red-800 text-white shadow-sm focus:ring-red-500',
+      'bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white shadow-sm focus:ring-rose-500',
     outline:
-      'border border-indigo-600 text-indigo-600 hover:bg-indigo-50 active:bg-indigo-100 focus:ring-indigo-500',
+      'border border-teal-600 text-teal-700 hover:bg-teal-50 active:bg-teal-100 focus:ring-teal-500',
     ghost:
-      'text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200 focus:ring-gray-500',
+      'text-slate-600 hover:text-slate-950 hover:bg-slate-100 active:bg-slate-200 focus:ring-slate-500',
   };
 
   const sizes = {

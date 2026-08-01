@@ -16,24 +16,22 @@ const PaginationBar = ({ pagination = {}, onPageChange, onLimitChange }) => {
   const endItem = Math.min(currentPage * limit, totalCount);
 
   return (
-    <div className="bg-white px-4 py-3 sm:px-6 border border-gray-200 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm mt-6">
-      {/* Entry counter */}
-      <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-600">
+    <div className="surface-card px-4 py-3 sm:px-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+      <div className="flex items-center gap-4 text-xs sm:text-sm text-slate-600">
         <span>
-          Showing <span className="font-semibold text-gray-900">{startItem}</span> to{' '}
-          <span className="font-semibold text-gray-900">{endItem}</span> of{' '}
-          <span className="font-semibold text-gray-900">{totalCount}</span> entries
+          Showing <span className="font-black text-slate-950">{startItem}</span> to{' '}
+          <span className="font-black text-slate-950">{endItem}</span> of{' '}
+          <span className="font-black text-slate-950">{totalCount}</span> entries
         </span>
 
-        {/* Per page limit dropdown */}
         {onLimitChange && (
           <div className="flex items-center gap-1.5 ml-2">
-            <span className="text-gray-400">|</span>
+            <span className="text-slate-300">|</span>
             <span>Per page:</span>
             <select
               value={limit}
               onChange={(e) => onLimitChange(Number(e.target.value))}
-              className="px-2 py-1 text-xs border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium"
+              className="px-2 py-1 text-xs border border-slate-200 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-teal-500 font-bold"
             >
               <option value={10}>10</option>
               <option value={25}>25</option>
@@ -43,7 +41,6 @@ const PaginationBar = ({ pagination = {}, onPageChange, onLimitChange }) => {
         )}
       </div>
 
-      {/* Navigation Buttons */}
       <div className="flex items-center gap-2">
         <Button
           variant="secondary"
@@ -55,7 +52,7 @@ const PaginationBar = ({ pagination = {}, onPageChange, onLimitChange }) => {
           Previous
         </Button>
 
-        <span className="text-xs font-semibold text-gray-700 px-3">
+        <span className="text-xs font-black text-slate-700 px-3">
           Page {currentPage} of {totalPages || 1}
         </span>
 

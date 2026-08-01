@@ -10,8 +10,8 @@ const Loader = ({ message = 'Loading...', size = 'md', fullScreen = false }) => 
 
   const loaderContent = (
     <div className="flex flex-col items-center justify-center p-6 text-center space-y-3">
-      <Loader2 className={`${spinnerSizes[size] || spinnerSizes.md} text-indigo-600 animate-spin`} />
-      {message && <p className="text-sm font-medium text-gray-500">{message}</p>}
+      <Loader2 className={`${spinnerSizes[size] || spinnerSizes.md} text-teal-600 animate-spin`} />
+      {message && <p className="text-sm font-bold text-slate-500">{message}</p>}
     </div>
   );
 
