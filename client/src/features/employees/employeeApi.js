@@ -1,4 +1,5 @@
 import api from '../../services/api';
+import employeeEndpoints from './endpoints';
 
 const employeeApi = {
   /**
@@ -6,7 +7,7 @@ const employeeApi = {
    * @param {Object} params - { page, limit, search, status, sortBy, sortOrder }
    */
   getEmployees: async (params = {}) => {
-    const response = await api.get('/employees', { params });
+    const response = await api.get(employeeEndpoints.list, { params });
     return response.data;
   },
 
@@ -15,7 +16,7 @@ const employeeApi = {
    * @param {String} id - Employee Mongo ID
    */
   getEmployeeById: async (id) => {
-    const response = await api.get(`/employees/${id}`);
+    const response = await api.get(employeeEndpoints.detail(id));
     return response.data;
   },
 
@@ -25,7 +26,7 @@ const employeeApi = {
    */
   createEmployee: async (data) => {
     const isFormData = data instanceof FormData;
-    const response = await api.post('/employees', data, {
+    const response = await api.post(employeeEndpoints.list, data, {
       headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {},
     });
     return response.data;
@@ -38,7 +39,7 @@ const employeeApi = {
    */
   updateEmployee: async (id, data) => {
     const isFormData = data instanceof FormData;
-    const response = await api.put(`/employees/${id}`, data, {
+    const response = await api.put(employeeEndpoints.detail(id), data, {
       headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {},
     });
     return response.data;
@@ -49,7 +50,7 @@ const employeeApi = {
    * @param {String} id - Employee Mongo ID
    */
   deleteEmployee: async (id) => {
-    const response = await api.delete(`/employees/${id}`);
+    const response = await api.delete(employeeEndpoints.detail(id));
     return response.data;
   },
 };
